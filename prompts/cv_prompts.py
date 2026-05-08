@@ -1,3 +1,4 @@
+from datetime import datetime
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
 # Prompt del sistema - Define el rol y criterios del reclutador experto
@@ -26,6 +27,8 @@ ANALISIS_PROMPT = HumanMessagePromptTemplate.from_template(
     """Analiza el siguiente currículum y evalúa qué tan bien se ajusta al puesto descrito. 
     Proporciona un análisis detallado, objetivo y profesional.
 
+**FECHA ACTUAL:** {fecha_actual}
+
 **DESCRIPCIÓN DEL PUESTO A CUBRIR:**
 {descripcion_puesto}
 
@@ -36,6 +39,7 @@ ANALISIS_PROMPT = HumanMessagePromptTemplate.from_template(
 1. Extrae información clave del candidato (nombre, experiencia, educación)
 2. Identifica habilidades técnicas relevantes para este puesto específico
 3. Evalúa la experiencia laboral en relación a los requisitos
+   - Si una experiencia indica "hasta presente/actualidad", calcula la duración desde la fecha de inicio hasta {fecha_actual}
 4. Determina fortalezas principales del candidato
 5. Identifica áreas de mejora o desarrollo necesarias
 6. Asigna un porcentaje de ajuste realista (0-100) considerando:

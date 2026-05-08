@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -28,7 +29,11 @@ def evaluar_candidato(texto_cv: str, descripcion_puesto: str) -> AnalisisCV:
         cadena_evaluacion = crear_evaluador_cv()
 
         resultado = cadena_evaluacion.invoke(
-            {"texto_cv": texto_cv, "descripcion_puesto": descripcion_puesto}
+            {
+                "fecha_actual": datetime.now().strftime("%B %Y"),
+                "texto_cv": texto_cv,
+                "descripcion_puesto": descripcion_puesto,
+            }
         )
 
         if isinstance(resultado, dict):
