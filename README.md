@@ -39,19 +39,29 @@ Edita `.env` y reemplaza `tu_api_key_aqui` con tu API key real de Google:
 GOOGLE_API_KEY=tu_clave_real_aqui
 ```
 
-### 3. Crea el entorno virtual e instala dependencias
+### 3. Instala dependencias
 
 ```bash
-uv venv
-uv pip install -e .
+uv sync
 ```
+
+Este comando crea el entorno virtual `.venv` y instala todas las dependencias definidas en `pyproject.toml`.
 
 ### 4. Ejecuta la aplicación
 
 ```bash
-.venv\Scripts\activate
-streamlit run app.py
+uv run streamlit run app.py
 ```
+
+> **Alternativa:** También puedes activar el entorno manualmente:
+> ```bash
+> # Windows
+> .venv\Scripts\activate
+> # macOS/Linux
+> source .venv/bin/activate
+> 
+> streamlit run app.py
+> ```
 
 La aplicación se abrirá automáticamente en tu navegador en `http://localhost:8501`.
 
